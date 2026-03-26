@@ -1,0 +1,11 @@
+.idea
+.pre.vlog
+.cmds
+build.cmd
+basic.s
+
+mps2-an500.bin
+mps2-an500.elf
+mps2-an500.objdump
+
+opt/
