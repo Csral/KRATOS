@@ -29,3 +29,113 @@ void handler_MemManage(void) {
     }
 
 };
+
+void handler_BusFault(void) {
+
+    asm("mov r0, #28");
+
+    while (1) {
+        
+    }
+
+};
+
+void handler_UsageFault(void) {
+
+    asm("mov r0, #28");
+
+    while (1) {
+        
+    }
+
+};
+
+void handler_RESERVED_7(void) {
+
+    asm("mov r0, #28");
+
+    while (1) {
+        
+    }
+
+};
+
+void handler_RESERVED_8(void) {
+
+    asm("mov r0, #28");
+
+    while (1) {
+        
+    }
+
+};
+
+void handler_RESERVED_9(void) {
+
+    asm("mov r0, #28");
+
+    while (1) {
+        
+    }
+
+};
+
+void handler_RESERVED_10(void) {
+
+    asm("mov r0, #28");
+
+    while (1) {
+        
+    }
+
+};
+
+void handler_SVCall(void) {
+
+    asm("mov r0, #52");
+
+    while (1) {
+        
+    }
+
+};
+
+void handler_DebugMonitor(void) {
+
+    asm("mov r0, #28");
+
+    while (1) {
+        
+    }
+
+};
+
+void handler_RESERVED_13(void) {
+
+    asm("mov r0, #28");
+
+    while (1) {
+        
+    }
+
+};
+
+void handler_PendSV(void) {
+
+    asm("mov r0, #28");
+
+    while (1) {
+        
+    }
+
+};
+
+void handler_SysTick(void) {
+
+    asm("mov r0, #28");
+
+    while (1) {
+        
+    }
+
+};

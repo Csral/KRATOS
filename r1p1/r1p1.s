@@ -6,6 +6,17 @@
         .extern handler_NMI
         .extern handler_HardFault
         .extern handler_MemManage
+        .extern handler_BusFault
+        .extern handler_UsageFault
+        .extern handler_RESERVED_7
+        .extern handler_RESERVED_8
+        .extern handler_RESERVED_9
+        .extern handler_RESERVED_10
+        .extern handler_SVCall
+        .extern handler_DebugMonitor
+        .extern handler_RESERVED_13
+        .extern handler_PendSV
+        .extern handler_SysTick
 
         .equ    __StackTop, 0x21000000
         .section .vector_table, "a", %progbits
@@ -17,6 +28,19 @@
         .long   handler_NMI
         .long   handler_HardFault
         .long   handler_MemManage
+        .long   handler_BusFault
+        .long   handler_UsageFault
+        .long   handler_RESERVED_7
+        .long   handler_RESERVED_8
+        .long   handler_RESERVED_9
+        .long   handler_RESERVED_10
+        .long   handler_SVCall
+        .long   handler_DebugMonitor
+        .long   handler_RESERVED_13
+        .long   handler_PendSV
+        .long   handler_SysTick
+
+        # 15 interrupts
 
         # .equ SYST_CSR, 0xE000E010
         # .equ SYST_RVR, 0xE000E014
@@ -38,7 +62,7 @@ _start:
         ldr r1, [r0]
 
         mov r7, #2
-        svc #2
+        svc #1
 
         # mov r4, #5
         # ldr r0, =SYST_RVR
