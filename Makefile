@@ -1,6 +1,6 @@
 -include .config
 
-CROSS_COMPILE=D:/Programming/Embedded/Arm/RTOS/opt/arm/11/arm-gnu-toolchain-11.3.rel1-mingw-w64-i686-arm-none-eabi/bin/arm-none-eabi-
+CROSS_COMPILE=opt/arm/11/arm-gnu-toolchain-11.3.rel1-mingw-w64-i686-arm-none-eabi/bin/arm-none-eabi-
 CC = $(CROSS_COMPILE)gcc
 OBJDUMP = $(CROSS_COMPILE)objdump
 OBJCOPY = $(CROSS_COMPILE)objcopy
