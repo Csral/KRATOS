@@ -1,0 +1,55 @@
+mainmenu "KRATOS Configuration"
+
+choice TARGET_DEVICE
+
+    prompt "Target device for flash"
+    default device_mps2an500
+
+    config device_teensy40
+        bool "TEENSY4.0"
+        help 
+            "Compile for Teensy 4.0 Cortex M7 architecture using NXP i.MX RT1062"
+
+    config device_generic
+        bool "GENERIC"
+        help
+            "Compile for generic ARMv7-M Cortex-M7 architecture specified in Cortex M7 documentation assuming all devices and memory region active."
+
+    config device_mps2an500
+        bool "MPS2AN500"
+        help
+            "Compile for ARM Motherboard Express V2M-MPS2 with the Application Note AN500 layout."
+
+endchoice
+
+config USE_CUSTOM_LINKER
+    bool "Use Custom Linker Script"
+    default n
+
+config LINKER_SCRIPT_PATH
+    string
+    default "linker/r1p1m7.ld"
+    prompt "Relative path to linker script"
+    depends on USE_CUSTOM_LINKER
+    help
+        "Specify the custom linker path to use (replaces default linker scripts)"
+
+config DEBUG_SYMBOLS
+    bool "Include Debug Symbols (-g)"
+    default y
+
+menu "Warnings"
+
+    config WARNINGS_ALL
+        bool "Enable All warnings"
+        help
+            "Enable all warnings"
+        default n
+
+    config W_AS_ERRORS
+        bool "Treat warnings as errors"
+        help
+            "Treat warnings as errors"
+        default n
+
+endmenu
