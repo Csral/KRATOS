@@ -3,15 +3,15 @@
         .thumb
         .syntax  unified
 
-        .extern handler_NMI
-        .extern handler_HardFault
-        .extern handler_MemManage
-        .extern handler_BusFault
-        .extern handler_UsageFault
-        .extern handler_SVCall
-        .extern handler_DebugMonitor
-        .extern handler_PendSV
-        .extern handler_SysTick
+        .extern _handler_NMI
+        .extern _handler_HardFault
+        .extern _handler_MemManage
+        .extern _handler_BusFault
+        .extern _handler_UsageFault
+        .extern _handler_SVCall
+        .extern _handler_DebugMonitor
+        .extern _handler_PendSV
+        .extern _handler_SysTick
 
         .equ handler_RESERVED_7,        0x00000000
         .equ handler_RESERVED_8,        0x00000000
@@ -26,20 +26,20 @@
         .long   __StackTop
         # handler for RESEt
         .long   _start 
-        .long   handler_NMI
-        .long   handler_HardFault
-        .long   handler_MemManage
-        .long   handler_BusFault
-        .long   handler_UsageFault
+        .long   _handler_NMI
+        .long   _handler_HardFault
+        .long   _handler_MemManage
+        .long   _handler_BusFault
+        .long   _handler_UsageFault
         .long   handler_RESERVED_7
         .long   handler_RESERVED_8
         .long   handler_RESERVED_9
         .long   handler_RESERVED_10
-        .long   handler_SVCall
-        .long   handler_DebugMonitor
+        .long   _handler_SVCall
+        .long   _handler_DebugMonitor
         .long   handler_RESERVED_13
-        .long   handler_PendSV
-        .long   handler_SysTick
+        .long   _handler_PendSV
+        .long   _handler_SysTick
 
         # 15 interrupts
 
@@ -55,6 +55,15 @@
 .global _start
 .type _start, %function
 _start:
+
+        # Do very basic setup here.
+        bl SMain
+
+SMain:
+
+        # Configure the system to bare minimum
+
+        SVC #2
 
         # enable SysTick
 
@@ -74,10 +83,7 @@ _start:
         # ldr r0, =SYST_CSR
         # str r4, [r0]
 
-        SVC #2
-
         # End SysTick config
-
 
 wait:    b       wait
         .size    _start, .-_start
