@@ -9,3 +9,8 @@ mps2-an500.elf
 mps2-an500.objdump
 
 opt/
+
+vault/
+
+.config
+.config.old
