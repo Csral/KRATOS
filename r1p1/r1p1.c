@@ -93,6 +93,7 @@ void handler_RESERVED_10(void) {
 void handler_SVCall(void) {
 
     asm("mov r0, #52");
+    asm("push {r0, r7}");
 
     while (1) {
         

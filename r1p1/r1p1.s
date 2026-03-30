@@ -8,17 +8,18 @@
         .extern handler_MemManage
         .extern handler_BusFault
         .extern handler_UsageFault
-        .extern handler_RESERVED_7
-        .extern handler_RESERVED_8
-        .extern handler_RESERVED_9
-        .extern handler_RESERVED_10
         .extern handler_SVCall
         .extern handler_DebugMonitor
-        .extern handler_RESERVED_13
         .extern handler_PendSV
         .extern handler_SysTick
 
-        .equ    __StackTop, 0x21000000
+        .equ handler_RESERVED_7,        0x00000000
+        .equ handler_RESERVED_8,        0x00000000
+        .equ handler_RESERVED_9,        0x00000000
+        .equ handler_RESERVED_10,       0x00000000
+        .equ handler_RESERVED_13,       0x00000000
+
+        .equ    __StackTop, 0x20400000
         .section .vector_table, "a", %progbits
 
         .align   2
@@ -42,10 +43,10 @@
 
         # 15 interrupts
 
-        # .equ SYST_CSR, 0xE000E010
-        # .equ SYST_RVR, 0xE000E014
-        # .equ SYST_CVR, 0xE000E018
-        # .equ SYST_CALIB, 0xE000E01C
+        .equ SYST_CSR, 0xE000E010
+        .equ SYST_RVR, 0xE000E014
+        .equ SYST_CVR, 0xE000E018
+        .equ SYST_CALIB, 0xE000E01C
 
         .equ VTOR, 0xE000ED08
         .equ CPUID, 0xE000ED00
@@ -54,34 +55,28 @@
 .global _start
 .type _start, %function
 _start:
-        mov     r0,#3
-        mov     r1,#5
-        add     r2, r0, r1
 
-        ldr r0, =0xE000ED08
-        ldr r1, [r0]
-
-        mov r7, #2
-        svc #1
+        # enable SysTick
 
         # mov r4, #5
         # ldr r0, =SYST_RVR
         # str r4, [r0]
-
+        
         # eor r4, r4
         # ldr r0, =SYST_CVR
         # str r4, [r0]
-
+        
         # ldr r4, =3221225472
         # ldr r0, =SYST_CALIB
         # str r4, [r0]
-
+        
         # ldr r4, =65539
         # ldr r0, =SYST_CSR
         # str r4, [r0]
 
-        # ldr r0, =CPUID
-        # ldr r1, [r0]
+        SVC #2
+
+        # End SysTick config
 
 
 wait:    b       wait
