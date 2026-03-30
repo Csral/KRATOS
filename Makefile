@@ -8,7 +8,7 @@ GDB = $(CROSS_COMPILE)gdb
 QEMU_SYSTEM_ARM = qemu-system-arm
 FLAGS = -mthumb -mcpu=cortex-m7 -nostdlib -nostartfiles -ffreestanding
 
-FILES = r1p1/r1p1.s r1p1/r1p1.c
+FILES = r1p1/r1p1.s r1p1/handlers.s r1p1/r1p1.c
 
 ifeq ($(strip $(CONFIG_device_teensy40)), y)
 LINKER_SCRIPT = linker/teensy40.ld
