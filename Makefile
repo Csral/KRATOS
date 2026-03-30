@@ -10,8 +10,16 @@ FLAGS = -mthumb -mcpu=cortex-m7 -nostdlib -nostartfiles -ffreestanding
 
 FILES = r1p1/r1p1.s r1p1/handlers.s r1p1/r1p1.c
 
-ifeq ($(strip $(CONFIG_device_teensy40)), y)
-LINKER_SCRIPT = linker/teensy40.ld
+ifeq ($(strip $(CONFIG_device_teensy)), y)
+
+ifeq ($(strip $(CONFIG_teensy_rev_b)), y)
+LINKER_SCRIPT = linker/teensyB.ld
+else ifeq ($(strip $(CONFIG_teensy_rev_c)), y)
+LINKER_SCRIPT = linker/teensyC.ld
+else
+$(error Invalid TEENSY revision selected.)
+endif
+
 else ifeq ($(strip $(CONFIG_device_mps2an500)), y)
 LINKER_SCRIPT = linker/r1p1.ld
 else

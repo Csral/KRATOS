@@ -5,10 +5,10 @@ choice TARGET_DEVICE
     prompt "Target device for flash"
     default device_mps2an500
 
-    config device_teensy40
-        bool "TEENSY4.0"
+    config device_teensy
+        bool "TEENSY"
         help 
-            "Compile for Teensy 4.0 Cortex M7 architecture using NXP i.MX RT1062"
+            "Compile for Teensy Cortex M7 architecture using NXP i.MX RT1052/62"
 
     config device_generic
         bool "GENERIC"
@@ -19,6 +19,25 @@ choice TARGET_DEVICE
         bool "MPS2AN500"
         help
             "Compile for ARM Motherboard Express V2M-MPS2 with the Application Note AN500 layout."
+
+endchoice
+
+choice TEENSY_REVISION_MODEL
+
+    depends on device_teensy
+
+    prompt "Choose the revision of Teensy for flash"
+    default teensy_rev_c
+
+    config teensy_rev_b
+    bool "Revision B1/B2"
+    help
+        "Compile for i.MX RT1052/62 following revision B1 or B2 (4M OctalSPI Flash)"
+
+    config teensy_rev_c
+    bool "Revision C1 and beyond"
+    help
+        "Compile for i.MX RT1052/62 following revision after C1 (16M QuadSPI flash)"
 
 endchoice
 
