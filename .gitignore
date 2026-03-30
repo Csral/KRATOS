@@ -14,3 +14,7 @@ vault/
 
 .config
 .config.old
+
+qemu/*
+
+*.log
