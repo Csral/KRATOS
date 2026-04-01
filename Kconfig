@@ -1,5 +1,17 @@
 mainmenu "KRATOS Configuration"
 
+choice TARGET_ARCH
+
+    prompt "Target CPU's architecture for flash"
+    default arch_armv7m
+
+    config arch_armv7m
+        bool "ARMv7-M"
+        help
+            "Compile for ARMv7-M CPU architecture"
+    
+endchoice
+
 choice TARGET_DEVICE
 
     prompt "Target device for flash"
@@ -9,11 +21,6 @@ choice TARGET_DEVICE
         bool "TEENSY"
         help 
             "Compile for Teensy Cortex M7 architecture using NXP i.MX RT1052/62"
-
-    config device_generic
-        bool "GENERIC"
-        help
-            "Compile for generic ARMv7-M Cortex-M7 architecture specified in Cortex M7 documentation assuming all devices and memory region active."
 
     config device_mps2an500
         bool "MPS2AN500"
