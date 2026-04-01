@@ -1,0 +1,1 @@
+export BSP_SRCS = main.s
